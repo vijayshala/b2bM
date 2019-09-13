@@ -1,0 +1,67 @@
+<div class="example-container mat-elevation-z1">
+    <mat-table #table [dataSource]="subscriptionRequestListData">
+       <!-- Subscription Id Column -->
+<ng-container matColumnDef="Request#">
+<mat-header-cell *matHeaderCellDef> Request# </mat-header-cell>
+<mat-cell *matCellDef="let element"> {{element.subscription_id}} </mat-cell>
+</ng-container>
+<!-- Input Data Column -->
+<ng-container matColumnDef="Input_Data">
+<mat-header-cell *matHeaderCellDef>Input Data</mat-header-cell>
+<mat-cell *matCellDef="let element"> {{element.input_data}} </mat-cell>
+</ng-container>
+<!-- Magento Request Column -->
+<ng-container matColumnDef="Request_At">
+<mat-header-cell *matHeaderCellDef>Request At</mat-header-cell>
+<mat-cell *matCellDef="let element"> {{element.magento_request_time}} </mat-cell>
+</ng-container>
+<!-- Magento Request Time Column -->
+<ng-container matColumnDef="Response">
+    <mat-header-cell *matHeaderCellDef>Response</mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{element.magento_request_time}} </mat-cell>
+    </ng-container>
+<!-- charge Name Column -->
+<!-- <ng-container matColumnDef="chargeName">
+<mat-header-cell *matHeaderCellDef> chargeName</mat-header-cell>
+<mat-cell *matCellDef="let element"> {{element.chargeName}} </mat-cell>
+</ng-container> -->
+<!-- Magento Response Column -->
+<!-- <ng-container matColumnDef="magentoResponse">
+    <mat-header-cell *matHeaderCellDef> Response</mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{element.magento_response}} </mat-cell>
+    </ng-container> -->
+    <!-- Magento Response Time Column -->
+<!-- <ng-container matColumnDef="magentoResponseTime">
+    <mat-header-cell *matHeaderCellDef> Response Time</mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{element.magento_response_time}} </mat-cell>
+    </ng-container> -->
+
+<!-- Charge Quantity Column -->
+<!-- <ng-container matColumnDef="chargeQuantity">
+<mat-header-cell *matHeaderCellDef> chargeQuantity</mat-header-cell>
+<mat-cell *matCellDef="let element"> {{element.chargeQuantity}} </mat-cell>
+</ng-container> -->
+<!-- Status Column -->
+<ng-container matColumnDef="Received_At">
+    <mat-header-cell *matHeaderCellDef> Received At</mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{element.status}} </mat-cell>
+    </ng-container>
+    <!-- Status  Details Column -->
+<ng-container matColumnDef="Status">
+    <mat-header-cell *matHeaderCellDef>Status</mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{element.status_detail}} </mat-cell>
+    </ng-container>
+      <!-- Confirmation Number Column -->
+<ng-container matColumnDef="Confirmation#">
+    <mat-header-cell *matHeaderCellDef>confirmation#</mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{element.confirmation_no}} </mat-cell>
+    </ng-container>
+<mat-header-row *matHeaderRowDef="subscriptionRequestDetailsColumns"></mat-header-row>
+<mat-row *matRowDef="let row; columns:subscriptionRequestDetailsColumns;" matRipple class="element-row">
+</mat-row>
+
+      </mat-table>
+      <mat-paginator #paginator [length]="totalElements" [pageIndex]="pageIndex" [pageSize]="pageSize" [pageSizeOptions]="pageSizeOptions" (page)="page($event)">
+          </mat-paginator>
+      </div>
+    

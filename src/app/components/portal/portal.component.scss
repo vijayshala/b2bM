@@ -1,0 +1,97 @@
+@import  '~@angular/material/theming'; 
+mat-table {
+    width: 100%;
+  }
+  .tablist {
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    margin: 0;
+    list-style-type: none;
+    -webkit-margin-before: 0;
+    -webkit-margin-after: 0;
+    //font-size: 0;
+    width: 40%;
+    border: 1px solid #f1f1f3;
+  }
+  li {
+    background: #f1f1f3;
+    border-top: 0;
+    border-right: 2px solid #eee;
+    flex: 1;
+    padding: 0;
+    text-align: center;
+    height: 35px;
+    width: 1%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    list-style: none;
+    cursor: pointer;
+   // display: inline-block;
+    margin: 0px 1px 0 0;
+  }
+  
+  .dashboard-sub-tabs {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, auto));
+    grid-gap: 1px;
+    justify-content: center;
+    margin: 1px 0;
+  //  padding: 0px 10px 15px 10px;
+  }
+  
+  .mat-icon {
+    background-repeat: no-repeat;
+    display: inline-block;
+    fill: currentColor;
+    height: 24px;
+    width: 24px;
+    color:red;
+}
+.quotes_title {
+  border-bottom: 3px solid #da291c;
+  width: 100px;
+  font-weight: 500;
+  font-size: 15px;
+}
+.mat-tables {
+  display: block;
+  border: 1px solid #b0b0b0;
+  max-height: 250px;
+  overflow: auto;
+}
+.mat-rows,
+.mat-header-rows {
+  display: flex;
+  border-bottom-width: 1px;
+  border-bottom-style: ridge;
+  align-items: center;
+  min-height: 48px;
+  padding: 0 24px;
+  font-size: 13px;
+}
+
+.mat-header-rows {
+  // box-shadow: 0 5px 3px -3px #b0b0b0;
+  background: #f6f6f6;
+  color: #3f3f3f;
+}
+
+.mat-header-inner-table {
+  min-height: 30px; color: #000000;
+  border-bottom: 1px solid #b4b4b4;
+  background: #f6f6f6;
+}
+
+.mat-cells,
+.mat-header-cells {
+  flex: 1;
+  overflow: hidden;
+  word-wrap: break-word;
+}
+.example-container1{
+  // Adds a shadow for elevation level 2 with color #e91e63 and 80% of the default opacity:
+  // #e91e63
+  @include mat-elevation(1,gray, 88);
+}

@@ -1,0 +1,190 @@
+<div> <input type="text" class="form-control" style="width:200px;margin-left:20px;margin-top:2%"
+    placeholder="SEARCH HERE" name="search">
+</div>
+<div class="row" style="margin-left: 88%; padding: 0%;margin-top:-3%">
+  <button class="btn btn-danger btn-md float-right" (click)="fileUpload()">Add Upload </button>
+</div>
+<div style="margin-top:2%;padding-left:2%;padding-right: 2%;">
+  <div class="example-container mat-elevation-z11">
+    <mat-table #table [dataSource]="linkIdList">
+
+      <ng-container matColumnDef="Link_Id">
+        <mat-header-cell *matHeaderCellDef>Link Id</mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.id}} </mat-cell>
+      </ng-container>
+
+
+      <!-- <ng-container matColumnDef="Input_File">
+        <mat-header-cell *matHeaderCellDef> Input File </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.input_file_location}} </mat-cell>
+      </ng-container> -->
+
+
+      <ng-container matColumnDef="Century_File">
+        <mat-header-cell *matHeaderCellDef>Legacy File </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.legacy_file}} </mat-cell>
+      </ng-container>
+
+
+      <ng-container matColumnDef="Century_Timestamp">
+        <mat-header-cell *matHeaderCellDef>Legacy File Request Time</mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.legacy_file_request_time}} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="Magento_File">
+        <mat-header-cell *matHeaderCellDef>Migrated File </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.migrated_file}} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="Magento_Timestamp">
+        <mat-header-cell *matHeaderCellDef>Migrated File Request Time</mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.migrated_file_request_time}} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="Status">
+        <mat-header-cell *matHeaderCellDef>Status </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.status}} </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="Retry_Count">
+        <mat-header-cell *matHeaderCellDef>Retry Count</mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.retry_count}} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="expandCollapse">
+        <mat-header-cell *matHeaderCellDef class="matTableHeader">Action </mat-header-cell>
+        <mat-cell *matCellDef="let element" class="matTableCell">
+          <!-- <button> -->
+            <!-- <button *ngIf="!element.close" (click) = "getAllSubscriptionData(element.file_id)">
+                <mat-icon id="expand_more">add</mat-icon>
+            </button>
+            <button *ngIf="element.close">
+                <mat-icon id="expand_less" >remove</mat-icon>
+            </button> -->
+
+            <i class="fa fa-plus " style="cursor: pointer; color: red; padding-top: 14px" *ngIf="!element.close" (click) = "getAllSubscriptionData(element.file_id)"></i>
+            <i class="fa fa-minus " style="cursor: pointer; color: red; padding-top: 14px" *ngIf="element.close"></i>
+
+            <!-- <mat-icon id="expand_more" *ngIf="!element.close" (click) = "getAllSubscriptionData(element.file_id)">add</mat-icon> -->
+            <!-- <mat-icon id="expand_less" *ngIf="element.close">remove</mat-icon> -->
+          <!-- </button> -->
+        </mat-cell>
+      </ng-container>
+
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;" matRipple class="element-row" [cdkDetailRow]="row"
+        [cdkDetailRowTpl]="tpl" (toggleChange)="onToggleChange($event, row)">
+      </mat-row>
+    </mat-table>
+    <mat-paginator #paginator  [pageSize]="pageSize" [length]="totalElements" 
+    [pageIndex]="pageIndex" [pageSizeOptions]="pageSizeOptions" (page)="page($event)">
+    </mat-paginator>
+    <!-- <div *ngIf="pageEvent">
+      <h5>Page Change Event Properties</h5>
+      <div>List length: {{pageEvent.totalElements}}</div>
+       <div>Page size: {{pageEvent.pageSize}}</div>
+      <div>Page index: {{pageEvent.pageIndex}}</div>
+    </div> -->
+
+  </div>
+
+  <ng-template #tpl let-element>
+    <div class="mat-row" [@detailExpand] style="overflow: hidden;">
+         <div class="table-accordion" style="grid-template-columns: 1fr!important; padding: 15px;">
+        <div class="example-container1 mat-elevation-z0">
+            <p class="quotes_title" style="margin-bottom: 5px;">Subscriptions</p>
+          <mat-table #table [dataSource]="subscriptionsList">
+            <!-- SUBSCRIPTION_NAME Column -->
+            <ng-container matColumnDef="Name">
+              <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
+              <mat-cell *matCellDef="let element"> {{element.name }} </mat-cell>
+            </ng-container>
+            <!-- Existing Account# Column -->
+            <ng-container matColumnDef="Account#">
+              <mat-header-cell *matHeaderCellDef> Account# </mat-header-cell>
+              <mat-cell *matCellDef="let element"> {{element.existing_accountnumber }} </mat-cell>
+            </ng-container>
+            <!-- Magento Request Column -->
+            <ng-container matColumnDef="Request">
+              <mat-header-cell *matHeaderCellDef>Request </mat-header-cell>
+              <mat-cell *matCellDef="let element"> {{element.latest_request_id}} </mat-cell>
+            </ng-container>
+            <!-- Magento Request Time Column -->
+            <ng-container matColumnDef="Requested_At">
+              <mat-header-cell *matHeaderCellDef> Requested At </mat-header-cell>
+              <mat-cell *matCellDef="let element">   </mat-cell>
+            </ng-container>
+            <!-- Magento Response Column -->
+            <ng-container matColumnDef="Response">
+              <mat-header-cell *matHeaderCellDef> Response </mat-header-cell>
+              <mat-cell *matCellDef="let element">   </mat-cell>
+            </ng-container>
+            <!--Magento Request Time Column -->
+
+            <!-- Status Column -->
+            <ng-container matColumnDef="Received_At">
+              <mat-header-cell *matHeaderCellDef> Received At </mat-header-cell>
+              <mat-cell *matCellDef="let element">  </mat-cell>
+            </ng-container>
+            <!--Details Column -->
+            <ng-container matColumnDef="Status">
+              <mat-header-cell *matHeaderCellDef> Status </mat-header-cell>
+              <mat-cell *matCellDef="let element">   </mat-cell>
+            </ng-container>
+            <!-- Confirmation# Column -->
+            <ng-container matColumnDef="Confirmation#">
+              <mat-header-cell *matHeaderCellDef>Confirmation# </mat-header-cell>
+              <mat-cell *matCellDef="let element">   </mat-cell>
+            </ng-container>
+        
+            <ng-container matColumnDef="Workflow">
+              <mat-header-cell *matHeaderCellDef class="matTableHeader">Workflow</mat-header-cell>
+              <mat-cell *matCellDef="let element">   </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="expandcollapse">
+              <mat-header-cell *matHeaderCellDef class="matTableHeader"></mat-header-cell>
+              <mat-cell *matCellDef="let element" class="matTableCell">
+                <!-- <button> -->
+                  <!-- <mat-icon id="expand_more" (click)="getAllSubscriptionDetailsData(element.partner_link_id,element.name)" *ngIf="!element.close">add</mat-icon> -->
+                  <!-- <mat-icon id="expand_more" (click)="getAllSubscriptionDetailsData(element.name)" *ngIf="!element.close">add</mat-icon> -->
+                  
+                  <!-- <mat-icon id="expand_more"   (click)="getAllSubscriptionDetailsData(element.partner_link_id,element.name)"  [routerLink]="['subscriptionDetails',element.partner_link_id,element.name]" *ngIf="!element.close">add</mat-icon> -->
+                  <!-- <mat-icon id="expand_less"  *ngIf="element.close">remove</mat-icon> -->
+                  
+                  <i class="fa fa-plus"  *ngIf="!element.close" style="color: red" (click)="getAllSubscriptionData(element.file_id)" [routerLink]="['subscriptionDetails',element.partner_link_id,element.name]"></i>
+                  <i class="fa fa-minus" *ngIf="element.close" style="color: red" ></i>
+                <!-- </button> -->
+              </mat-cell>
+            </ng-container>
+
+            <mat-header-row *matHeaderRowDef="subdisplayedColumns"></mat-header-row>
+            <mat-row *matRowDef="let row; columns: subdisplayedColumns;" matRipple class="element-row"
+              [cdkDetailRow]="row" [cdkDetailRowTpl]="tpl2">
+            </mat-row>
+          </mat-table>
+          <mat-paginator 
+          #paginator  [pageSize]="pageSize1" [length]="totalElements1" 
+    [pageIndex]="pageIndex1" [pageSizeOptions]="pageSizeOptions1" (page)="page1($event)">
+          </mat-paginator>
+        </div>
+      </div>
+    </div>
+  </ng-template>
+  <ng-template #tpl2 let-element>
+    <div class="mat-row" [@detailExpand] style="overflow: hidden;">
+      <div class="table-accordion" style="grid-template-columns: 1fr!important; padding: 15px;">
+        <!-- <nav> -->
+            <div class="dashboard-tabs"  style="margin-top:1%;">
+          <ul  class="tablist">
+            <li routerLinkActive="selected"  (click)="getAllSubscriptionDetailsData(element.partner_link_id,element.name)" [routerLink]="['subscriptionDetails',element.partner_link_id,element.name]">
+              Subscription Details</li>
+            <li routerLinkActive="selected" (click)="getAllSubscriptionRequestData(element.name)" [routerLink]="['subscriptionRequests',element.name]">
+              Subscription Requests</li>
+          </ul>
+          </div>
+        <!-- </nav> -->
+        <router-outlet></router-outlet>
+      </div>
+    </div>
+  </ng-template>
+</div>

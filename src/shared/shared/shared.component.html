@@ -1,0 +1,15 @@
+<div class="alert-container" *ngIf="show">
+    <div class="alertMessagePopupBox">
+      <div class="alertPopupHeader"> {{header}}
+        <!-- <i class="ion-android-close float-right font-24" (click)="closePopup()"></i> -->
+      </div>
+      <div class="alertPopupBody">
+        <div class="alertPopupMsg">
+          <p>{{message}}</p>
+        </div>
+      </div>
+      <div class="alertPopupFooter">
+        <button class="btn btn-md primary-button float-right btn-primary" (click)="closePopup()">OK</button>
+      </div>
+    </div>
+  </div>

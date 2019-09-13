@@ -1,0 +1,114 @@
+
+<h2 class="dialog-title">File Upload</h2>
+
+<div class="row" style="margin-left: 8%; padding: 0%;margin-top:3%;">
+    <input type="file" style="display:none;" required />
+    <button class="btn btn-danger btn-md float-right"  (click)="newUploads(openUpload)">New Upload </button>
+  </div>
+<div  style="margin-top:6%;padding-left:2%;padding-right: 2%;">
+  <div class="example-container mat-elevation-z8">
+    <mat-table #table [dataSource]="fileUploadData">
+      <!-- File Number Column -->
+      <ng-container matColumnDef="fileNumber">
+        <mat-header-cell *matHeaderCellDef> File Number </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.fileNumber}} </mat-cell>
+      </ng-container>
+  
+      <!-- Total Records Column -->
+      <ng-container matColumnDef="totalRecords">
+        <mat-header-cell *matHeaderCellDef> Total Records </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.totalRecords}} </mat-cell>
+      </ng-container>
+  
+      <!-- Processed Records -->
+      <ng-container matColumnDef="processedRecords">
+        <mat-header-cell *matHeaderCellDef>Processed Records </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.processedRecords}} </mat-cell>
+      </ng-container>
+  
+      <!-- Pending Records Column -->
+      <ng-container matColumnDef="pendingRecords">
+        <mat-header-cell *matHeaderCellDef>Pending Records</mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.pendingRecords}} </mat-cell>
+      </ng-container>
+  
+      <!-- Status Column -->
+      <ng-container matColumnDef="status">
+        <mat-header-cell *matHeaderCellDef>Status </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.status}} </mat-cell>
+      </ng-container>
+      <!-- Submission Time Column -->
+      <ng-container matColumnDef="submissionTime">
+        <mat-header-cell *matHeaderCellDef>Submission Time </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.submissionTime}} </mat-cell>
+      </ng-container>
+      <!-- completion Time Column -->
+      <ng-container matColumnDef="completionTime">
+        <mat-header-cell *matHeaderCellDef>completion Time </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.completionTime}} </mat-cell>
+      </ng-container>
+      <!-- Input File Column -->
+      <ng-container matColumnDef="inputFile">
+        <mat-header-cell *matHeaderCellDef>Input File</mat-header-cell>
+        <mat-cell *matCellDef="let element"style ="color:blue"> {{element.inputFile}} </mat-cell>
+      </ng-container>
+  <!-- Processed File Column -->
+  <ng-container matColumnDef="processedFile">
+    <mat-header-cell *matHeaderCellDef>Processed File </mat-header-cell>
+    <mat-cell *matCellDef="let element"style ="color:blue"> {{element.processedFile}} </mat-cell>
+  </ng-container>
+    
+  
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;" matRipple class="element-row">
+      </mat-row>
+     </mat-table>
+     <mat-paginator [length]="length"
+                [pageSize]="pageSize"
+                [pageSizeOptions]="pageSizeOptions"
+              >
+  </mat-paginator>
+  
+   </div>
+
+   <div class="row" style="margin-left:95%; padding: 0%;margin-top:3%;">
+    <button class="btn btn-danger btn-md float-right" (click)="Cancel()">Ok</button>
+  </div>
+  <ng-template #openUpload>
+      <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+          <span aria-hidden="true" style="margin-left:91%">&times;</span>
+        </button>
+    <div style="margin-left:3%">
+      <mat-label>Partner Link ID:
+      <mat-form-field class="example-full-width">
+          <!-- <mat-label>Partner Link ID:</mat-label> -->
+        <input matInput>
+      </mat-form-field></mat-label><br>
+      <mat-label>Country Code:
+       <mat-form-field class="example-full-width">
+          <!-- <mat-label>Country Code:</mat-label> -->
+        <input matInput>
+      </mat-form-field> </mat-label><br><br>
+    <mat-label>Input File:
+        <div class="row" style="margin-left: 18%; padding: 0%;margin-top:-3%;">
+            <input type="file" style="display:none;" id="browsefile" required />
+            <button class="btn btn-danger btn-md float-right"  (click)="btnclickedBrowse()">Browse File </button>
+          </div>
+          <div class="row" style="margin-left: 45%; padding: 0%;margin-top:-7.5%;">
+            <button class="btn btn-danger btn-md float-right">Upload </button>
+          </div>
+    </mat-label>
+      
+    <!--  <mat-form-field class="example-full-width">
+          <mat-label>Input File:</mat-label>
+          <div class="row" style="margin-left: 8%; padding: 0%;margin-top:3%;">
+  <input type="file" style="display:none;" id="browsefile" required />
+  <button class="btn btn-danger btn-md float-right"  (click)="btnclickedBrowse()">Browse File </button>
+</div>
+<div class="row" style="margin-left: 25%; padding: 0%;margin-top:-4%;">
+  <button class="btn btn-danger btn-md float-right">Upload </button>
+</div>
+      </mat-form-field>
+  -->
+  </div>
+  </ng-template>

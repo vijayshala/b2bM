@@ -1,0 +1,124 @@
+.main-wrapper {
+    box-shadow: 0 6px 10px -1px rgba(68, 68, 68, 0.4);
+    position: relative;
+    width: 100%;
+    z-index: 1000;
+    background: #fff;
+  }
+  
+  .main-wrapper .inner {
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    border-bottom: 1px solid #f1f1f3;
+    height: 70px;
+    position: relative;
+    align-items: center;
+  }
+  
+  .main-wrapper .inner .av-logo {
+    width: 230px;
+  }
+  
+  .main-wrapper .inner .av-logo {
+    overflow: hidden;
+    position: relative;
+    height: 70px;
+  }
+  
+  .main-wrapper .inner .av-logo .logo {
+    background: #DA291C;
+    height: 70px;
+    width: 230px;
+    margin: 0 0 0 -20px;
+    transform: skew(20deg);
+    -webkit-transform: skew(20deg);
+    -moz-transform: skew(20deg);
+    -o-transform: skew(20deg);
+    overflow: hidden;
+    position: relative;
+  }
+  
+  .main-wrapper .inner .av-logo .image-container {
+    z-index: 999;
+    position: absolute;
+    top: 42px;
+    left: 35px;
+    transform: translateY(-50%);
+  }
+  .main-wrapper .inner .Header {
+    z-index: 999;
+    position: absolute;
+    font-size:25px;
+    font-weight:bold;
+    top: 22px;
+    left:32%;
+    transform: translateY(-50%);
+  }
+  .main-wrapper .inner .SubHeader {
+    z-index: 999;
+    position: absolute;
+    top: 46px;
+    left:25%;
+    transform: translateY(-50%);
+  }
+  
+  .main-wrapper .inner .secondary-section {
+    flex: 1;
+    text-align: right;
+    display: flex;
+    justify-content: flex-end;
+  }
+  
+  .main-wrapper .inner .secondary-section .login {
+    margin: 0px 10px;
+  }
+  
+  .main-wrapper .inner .secondary-section .login .user-login {
+    width: 300px;
+    height: 35px;
+    border-radius: 50%;
+  }
+  
+  .main-wrapper .inner .secondary-section .login .user-login img {
+    border-radius: 50%;
+  }
+  
+  .homeCounter,.cartCouter,
+  .user-login {
+    display: inline-block;
+    margin: 10px;
+  }
+
+  .account-menu, .help-menu {
+    display: inline-block;
+    margin: 0 15px 5px 0;
+   cursor: pointer;
+  }
+  .createnewquote-menu{
+    display: inline-block;
+    cursor: pointer;
+     }
+
+.account-menu > img, .help-menu> img ,.subscription-menu> img{
+    height: 15px!important;
+    padding-right:1px;
+    cursor: pointer;
+  }
+  .createnewquote-menu> img{
+    height: 15px!important;
+    padding-right:1px;
+    cursor: pointer;
+   
+  }
+  .selected {
+    // text-decoration: underline;
+    // text-decoration-color:red;
+  }
+
+  .subscription-menu{
+    display: inline-block;
+    cursor: pointer;
+  }
+             
+              

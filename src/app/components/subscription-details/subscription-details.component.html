@@ -1,0 +1,44 @@
+<div class="example-container mat-elevation-z1">
+    <mat-table #table [dataSource]="subscriptionDetailsData">
+       <!-- Subscription Id Column -->
+<ng-container matColumnDef="subscriptionId">
+<mat-header-cell *matHeaderCellDef> Subscription Id </mat-header-cell>
+<mat-cell *matCellDef="let element"> {{element.subscription_name}} </mat-cell>
+</ng-container>
+<!-- Product Name Column -->
+<!-- <ng-container matColumnDef="productName">
+<mat-header-cell *matHeaderCellDef> productName</mat-header-cell>
+<mat-cell *matCellDef="let element"> {{element.productName}} </mat-cell>
+</ng-container> -->
+<!-- Rate Plan Name Column -->
+<ng-container matColumnDef="ratePlanName">
+<mat-header-cell *matHeaderCellDef> Rate Plan</mat-header-cell>
+<mat-cell *matCellDef="let element"> {{element.rateplan_name}} </mat-cell>
+</ng-container>
+<!-- charge Name Column -->
+<ng-container matColumnDef="chargeName">
+<mat-header-cell *matHeaderCellDef> Charge Name</mat-header-cell>
+<mat-cell *matCellDef="let element"> {{element.charge_name}} </mat-cell>
+</ng-container>
+
+<!-- CHAGE_DISCOUNT_PERCENTAGE  -->
+<ng-container matColumnDef="CHARGE_DISCOUNT_PERCENTAGE">
+      <mat-header-cell *matHeaderCellDef> Charge Qty</mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.charge_discount_percentage }} </mat-cell>
+      </ng-container>
+      <!-- TIER_PRICE  Column -->
+<ng-container matColumnDef="TIER_PRICE">
+      <mat-header-cell *matHeaderCellDef> Tier Price$</mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.tier_price}} </mat-cell>
+      </ng-container>
+<mat-header-row *matHeaderRowDef="subscriptionDetailsColumns"></mat-header-row>
+<mat-row *matRowDef="let row; columns:subscriptionDetailsColumns;" matRipple class="element-row">
+</mat-row>
+
+      </mat-table>
+      <mat-paginator  #paginator  [pageSize]="pageSize" [length]="totalElements" 
+      [pageIndex]="pageNumber" [pageSizeOptions]="pageSizeOptions"
+      >
+</mat-paginator>
+      </div>
+    
